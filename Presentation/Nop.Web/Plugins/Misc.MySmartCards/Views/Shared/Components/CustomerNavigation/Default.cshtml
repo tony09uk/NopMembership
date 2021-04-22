@@ -1,0 +1,7 @@
+﻿@model AccountNavigationModel
+@foreach (var item in Model.CustomerNavigationItems)
+{
+    <li class="@item.ItemClass nav-item">
+        <a href="@Url.RouteUrl(item.RouteName)" role="tab" class="nav-link @(Model.SelectedTab == item.Tab ? "active" : "inactive")">@(item.Title)</a>
+    </li>
+}

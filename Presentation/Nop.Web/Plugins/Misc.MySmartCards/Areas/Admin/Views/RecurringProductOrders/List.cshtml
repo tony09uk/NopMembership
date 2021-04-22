@@ -1,0 +1,74 @@
+﻿@model RecurringProductOrderSearchModel
+<form asp-controller="Product" asp-action="ProductTags" method="post" id="product-tags-form">
+    <div class="content-header clearfix">
+        <h1 class="pull-left">
+            @T("Misc.MySmartCards.Admin.Recurring.Product.Orders")
+        </h1>
+    </div>
+
+    <div class="content">
+        <div class="form-horizontal">
+            <div class="panel-group">
+                <div class="panel panel-default panel-search">
+                    <div class="panel-body">
+                        <!-- ADD SEARCH STUFF HERE!!! -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    @await Html.PartialAsync("Table", new DataTablesModel
+                    {
+                        Name = "product-tags-grid",
+                        UrlRead = new DataUrl("List", "RecurringProductOrders", null),
+                        SearchButtonId = "search-recurring-product-orders",
+                        Length = Model.PageSize,
+                        LengthMenu = Model.AvailablePageSizes,
+                        Filters = new List<FilterParameter>
+                        {
+                            new FilterParameter(nameof(Model.SearchAddress)),
+                            new FilterParameter(nameof(Model.SearchCustomerFullName)),
+                            new FilterParameter(nameof(Model.SearchDeliveryDate)),
+                            new FilterParameter(nameof(Model.SearchFont)),
+                            new FilterParameter(nameof(Model.SearchMessage)),
+                            new FilterParameter(nameof(Model.SearchOrderStatus)),
+                            new FilterParameter(nameof(Model.SearchRecurringDate)),
+                        },
+                        ColumnCollection = new List<ColumnProperty>
+                        {
+                            new ColumnProperty(nameof(RecurringProductOrderModel.Address))
+                            {
+                                Title = T("Misc.MySmartCards.Admin.Delivery.Address").Text
+                            },
+                            new ColumnProperty(nameof(RecurringProductOrderModel.CustomerFullName))
+                            {
+                                Title = T("Misc.MySmartCards.Admin.Customer.Full.Name").Text
+                            },
+                            new ColumnProperty(nameof(RecurringProductOrderModel.Message))
+                            {
+                                Title = T("Misc.MySmartCards.Admin.Message").Text
+                            },
+                            new ColumnProperty(nameof(RecurringProductOrderModel.DeliveryDate))
+                            {
+                                Title = T("Misc.MySmartCards.Admin.Delivery.Date").Text
+                            },
+                            new ColumnProperty(nameof(RecurringProductOrderModel.RecurringDate))
+                            {
+                                Title = T("Misc.MySmartCards.Admin.Recurring.Date").Text
+                            },
+                            new ColumnProperty(nameof(RecurringProductOrderModel.OrderStatus))
+                            {
+                                Title = T("Admin.Customers.Customers.Orders.OrderStatus").Text
+                            },
+                            new ColumnProperty(nameof(RecurringProductOrderModel.Font))
+                            {
+                                Title = T("Misc.MySmartCards.Admin.Font.Name").Text
+                            }
+                        }
+                    })
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

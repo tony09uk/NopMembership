@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'frente_h1regular';
+    src: url('frenteh1-regular-webfont.woff2') format('woff2'),
+         url('frenteh1-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'frosting_for_breakfastregular';
+    src: url('frostingforbreakfast-llnw-webfont.woff2') format('woff2'),
+         url('frostingforbreakfast-llnw-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'kristimedium';
+    src: url('kristi-webfont.woff2') format('woff2'), 
+         url('kristi-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'may_queenregular';
+    src: url('mayqueen-6y36-webfont.woff2') format('woff2'), 
+         url('mayqueen-6y36-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'meddonregular';
+    src: url('meddon-gyo6-webfont.woff2') format('woff2'), 
+         url('meddon-gyo6-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'montezregular';
+    src: url('montez-regular-webfont.woff2') format('woff2'), 
+         url('montez-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'pixies_scribblesregular';
+    src: url('pixiesscribbles-xd6a-webfont.woff2') format('woff2'), 
+         url('pixiesscribbles-xd6a-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'prophecy_scriptregular';
+    src: url('prophecyscript-r8vy-webfont.woff2') format('woff2'), 
+         url('prophecyscript-r8vy-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

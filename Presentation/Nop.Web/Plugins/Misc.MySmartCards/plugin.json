@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "MySmartCards",
+  "SystemName": "Misc.MySmartCards",
+  "Version": "0.02",
+  "SupportedVersions": [ "4.30" ],
+  "Author": "Tony Simpson",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.MySmartCards.dll",
+  "Description": "Custom functionaility for MysmartCards"
+}

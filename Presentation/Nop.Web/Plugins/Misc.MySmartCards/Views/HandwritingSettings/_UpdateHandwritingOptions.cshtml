@@ -1,0 +1,41 @@
+﻿@model HandwritingSettingsModel
+
+@{
+    var fonts = Model.FontOptionsList.Select(x => new SelectListItem
+    {
+        Text = x.FontDisplayName,
+        Value = $"{x.StyleName} - {x.Id}",
+        Selected = x.Id.Equals(Model.SelectedFont.Id)
+    });
+
+    var fontSizes = Model.FontSizeOptionsList.Select(x => new SelectListItem
+    {
+        Text = x.Value,
+        Value = $"{x.Key}",
+        Selected = x.Equals(Model.SelectedFontSize)
+    });
+}
+
+@{
+    <input type="hidden" name="SelectedFontOptionsId" id="selectedFontOptionsId" value="@Model.SelectedFont.Id" />
+    <select id="fontOptions"
+            style="float: left; margin-right: 10px;"
+            name="fontOptions"
+            asp-items="@fonts"
+            aria-label="font-selection">
+    </select>
+
+    <input type="hidden" name="SelectedFontSizeId" id="selectedFontSizeId" value="@Model.SelectedFontSize.Key" />
+    <select id="fontSizes"
+            style="float: left; margin-right: 10px;"
+            name="fontSizes"
+            asp-items="@fontSizes"
+            aria-label="font-size-selection">
+    </select>
+}
+
+<div id="fontPreview" style="font-family: @Model.SelectedFont.StyleName; font-size: @Model.SelectedFontSize.Value">
+    <p>
+        @T("Plugins.Misc.MySmartCards.TestValue") This is some sample text to show you how how your message will look when it is physically written on to a card by our robot
+    </p>
+</div>
