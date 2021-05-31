@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Ts Membership",
+  "SystemName": "Misc.Membership",
+  "Version": "0.1",
+  "SupportedVersions": [ "4.30" ],
+  "Author": "Tony Simpson",
+  "DisplayOrder": 1,
+  "FileName": "Ts.Plugin.Misc.Membership.dll",
+  "Description": "This plugin add membership functionality"
+}

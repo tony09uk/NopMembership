@@ -1,0 +1,4 @@
+﻿TODO: list to convert this in to a membership plugin:
+define the category name that is going to be displayed in the account page
+views must be customisable
+membership tab text must be configurable

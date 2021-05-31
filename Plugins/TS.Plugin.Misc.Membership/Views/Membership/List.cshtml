@@ -1,0 +1,35 @@
+﻿@using Nop.Core
+@model MembershipList
+@inject Nop.Core.IWebHelper webHelper
+@{
+    Layout = "_ColumnsTwo";
+    Html.AddTitleParts(T("PageTitle.Account").Text);
+}
+
+@section left
+{
+    @await Component.InvokeAsync("CustomerNavigation", new { selectedTabId = MembershipNavigationEnum.Membership })
+}
+
+<div class="page account-page customer-info-page">
+    <div class="page-title">
+        <h1>@T("Account.MyAccount") - @T("Misc.Membership.Account.Subscriptions")</h1>
+    </div>
+    <div class="page-body">
+        <div class="product-filters">
+            <div class="item-grid">
+                @foreach (var product in Model.CategoryModel.Products)
+                {
+                    string borderColour = Model.SelectedMembershipId == product.Id ? "green" : "";
+                    <div class="item-box" style="border: 1px solid @borderColour">
+                        @if (!Model.UpgradableMembershipList.First(x => x.Key == product.Id).Value)
+                        {
+                            product.ProductPrice.DisableBuyButton = true;
+                        }
+                        @await Html.PartialAsync("_ProductBox", product)
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

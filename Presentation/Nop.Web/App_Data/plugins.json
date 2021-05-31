@@ -62,6 +62,10 @@
     {
       "SystemName": "FoxNetSoft.PayPalStandardPro",
       "Version": "1.21"
+    },
+    {
+      "SystemName": "Misc.Membership",
+      "Version": "0.1"
     }
   ],
   "PluginNamesToUninstall": [],
