@@ -9,6 +9,7 @@ using Nop.Web.Models.Catalog;
 using System.Linq;
 using Ts.Plugin.Misc.Membership.Factories;
 using Ts.Plugin.Misc.Membership.Models.Customers;
+using Ts.Plugin.Misc.Membership.Services;
 
 namespace Nop.Plugin.Misc.MySmartCards.Controllers
 {
@@ -18,17 +19,20 @@ namespace Nop.Plugin.Misc.MySmartCards.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IMembershipListFactory _membershipListFactory;
         private readonly IWorkContext _workContext;
+        private readonly IOrderAndCompleteService _orderAndCompleteService;
 
         public MembershipController(
             ICatalogModelFactory catalogModelFactory,
             ICategoryService categoryService,
             IMembershipListFactory membershipListFactory,
-            IWorkContext workContext)
+            IWorkContext workContext,
+            IOrderAndCompleteService orderAndCompleteService)
         {
             _catalogModelFactory = catalogModelFactory;
             _categoryService = categoryService;
             _membershipListFactory = membershipListFactory;
             _workContext = workContext;
+            _orderAndCompleteService = orderAndCompleteService;
         }
 
         [HttpsRequirement]
@@ -61,5 +65,32 @@ namespace Nop.Plugin.Misc.MySmartCards.Controllers
 
             return RedirectToAction(redirectActionName);
         }
+
+        [HttpsRequirement]
+        public IActionResult OrderAndComplete()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult OrderAndComplete(int productId)
+        {
+            _orderAndCompleteService.Run(productId);//DOES THIS WORK----->NO------>WHY?
+            return View();
+        }
+        //STEPS TO GET IT WORKING
+        //add order
+        //mark as paid
+        //redirect to complete page(replicate shopping cart order complete functionaility)
+
+
+        //ADD ORDER
+        //create ProcessPaymentRequest(example: checkoutController ln 967)
+        //call OrderProcessingService.PlaceOrder
+
+
+        //MARK AS PAID
+        //call  _orderService.GetOrderById(id);
+        //_orderProcessingService.MarkOrderAsPaid(order);
     }
 }

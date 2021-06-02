@@ -5,6 +5,7 @@ using Ts.Plugin.Misc.Membership.Factories;
 
 namespace Nop.Plugin.Misc.MySmartCards.Components
 {
+
     [ViewComponent(Name = MembershipPluginConstants.MEMBERSHIP_NAVIGATION_VIEW_COMPONENT_NAME)]
     public class MembershipNavigationViewComponent : NopViewComponent
     {

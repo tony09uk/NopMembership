@@ -32,6 +32,7 @@ namespace Ts.Plugin.Misc.Membership.Infrastructure
         {
             builder.RegisterType<MembershipService>().As<IMembershipService>();
             builder.RegisterType<WidgetSelectorService>().As<IWidgetSelectorService>();
+            builder.RegisterType<OrderAndCompleteService>().As<IOrderAndCompleteService>();
         }
     }
 }

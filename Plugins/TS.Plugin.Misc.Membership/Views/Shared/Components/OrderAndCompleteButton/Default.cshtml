@@ -1,0 +1,5 @@
+﻿@model OrderButtonModel
+<input type="button"
+       class="button-1 add-to-cart-button"
+       value="Create"
+       onclick="AjaxCart.addproducttocart_details('@Url.RouteUrl(MembershipPluginConstants.MEMBERSHIP_ORDER_AND_COMPLETE_ROUTE_NAME, new {productId = Model.ProductId})', '#product-details-form');return false;" />

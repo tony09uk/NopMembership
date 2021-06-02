@@ -14,6 +14,11 @@ namespace Ts.Plugin.Misc.Membership.Infrastructure
                 MembershipPluginConstants.MEMBERSHIP_ROUTE_NAME,
                 "Plugins/Membership/List",
                 new { controller = "Membership", action = "List" });
+
+            endpointRouteBuilder.MapControllerRoute(
+                MembershipPluginConstants.MEMBERSHIP_ORDER_AND_COMPLETE_ROUTE_NAME,
+                "Plugins/Membership/OrderAndComplete",
+                new { controller = "Membership", action = "OrderAndComplete" });
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Ts.Plugin.Misc.Membership.Services
     {
         private Dictionary<string, string> _map = new Dictionary<string, string> {
             { PublicWidgetZones.AccountNavigationBefore, MembershipPluginConstants.MEMBERSHIP_NAVIGATION_VIEW_COMPONENT_NAME },
-            { PublicWidgetZones.ProductDetailsInsideOverviewButtonsAfter, MembershipPluginConstants.MEMBERSHIP_ORDER_AND_COMPLETE_BUTTON_COMPONENT_NAME }
+            { PublicWidgetZones.ProductDetailsInsideOverviewButtonsBefore, MembershipPluginConstants.MEMBERSHIP_ORDER_AND_COMPLETE_BUTTON_COMPONENT_NAME }
         };
 
         public string GetWidgetViewComponentName(string widgetZone)
