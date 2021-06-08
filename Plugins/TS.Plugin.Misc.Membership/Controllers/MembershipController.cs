@@ -75,22 +75,25 @@ namespace Nop.Plugin.Misc.MySmartCards.Controllers
         [HttpPost]
         public IActionResult OrderAndComplete(int productId)
         {
-            _orderAndCompleteService.Run(productId);//DOES THIS WORK----->NO------>WHY?
-            return View();
+            var orderId = _orderAndCompleteService.Run(productId);
+
+            //todo: how should I implement the order complete message/screen?
+
+            //todo: decrement available remaining orders if the above is successful
+            //todo: redirect to success screen
+            //todo: display the number of remainng available orders to user e.g. "You have created 3 of an available 5 orders"
+            var protocol = Request.IsHttps ? "https://" : "http://";
+            var host = Request.Host.Value;
+
+            var location = $"{protocol}{host}/checkout/Completed?orderId={orderId}";
+
+            //todo: message should be populate from _localizationService.GetResource("WHATEVER MESSAGE I NEED TO RETURN")
+            return Json(new
+            {
+                success = true,
+                message = "The order has been created",
+                redirect = location
+            });
         }
-        //STEPS TO GET IT WORKING
-        //add order
-        //mark as paid
-        //redirect to complete page(replicate shopping cart order complete functionaility)
-
-
-        //ADD ORDER
-        //create ProcessPaymentRequest(example: checkoutController ln 967)
-        //call OrderProcessingService.PlaceOrder
-
-
-        //MARK AS PAID
-        //call  _orderService.GetOrderById(id);
-        //_orderProcessingService.MarkOrderAsPaid(order);
     }
 }

@@ -66,6 +66,10 @@
     {
       "SystemName": "Misc.Membership",
       "Version": "0.1"
+    },
+    {
+      "SystemName": "Payments.CheckMoneyOrder",
+      "Version": "1.44"
     }
   ],
   "PluginNamesToUninstall": [],

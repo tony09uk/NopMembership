@@ -2,6 +2,6 @@
 {
     public interface IOrderAndCompleteService
     {
-        void Run(int productId);
+        int Run(int productId);
     }
 }
