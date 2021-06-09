@@ -22,6 +22,7 @@ namespace Ts.Plugin.Misc.Membership.Infrastructure
             {
                 options.Filters.Add<CatalogCategoryResultFilter>();
                 options.Filters.Add<ProductDetailsResultFilter>();
+                options.Filters.Add<OrderAndCompleteFilter>();
             });
         }
     }

@@ -34,25 +34,21 @@ var OrderAndComplete = {
         var addToCart = self.send(self.addToCartUrl, self.formSelector);
 
         var addOrder = addToCart.then(function (response) {
+            if (response.success === true) {
+                return self.send(self.completeOrderUrl, self.productId);
+            }
+
             if (response.message) {
-                if (response.success === true) {
-                    return self.send(self.completeOrderUrl, self.productId);
+                if (AjaxCart.usepopupnotifications === true) {
+                    displayPopupNotification(response.message, 'error', true);
                 }
                 else {
-                    if (AjaxCart.usepopupnotifications === true) {
-                        displayPopupNotification(response.message, 'error', true);
-                    }
-                    else {
-                        //no timeout for errors
-                        displayBarNotification(response.message, 'error', 0);
-                    }
+                    //no timeout for errors
+                    displayBarNotification(response.message, 'error', 0);
                 }
                 return false; //todo: what should the return type be if it fails
             }
-            if (response.redirect) {
-                location.href = response.redirect;
-                return true;
-            }
+
             return false;
         });
 
@@ -64,35 +60,30 @@ var OrderAndComplete = {
 
         addOrder.done(function (response) {
             if (response.message) {
-                //display notification
                 if (response.success === true) {
-                    //success
-                    if (AjaxCart.usepopupnotifications === true) {
-                        displayPopupNotification(response.message, 'success', true);
-                    }
-                    else {
-                        //specify timeout for success messages
-                        displayBarNotification(response.message, 'success', 3500);
-                    }
                     location.href = response.redirect;
                     return true;
                 }
-                else {
-                    //error
-                    if (AjaxCart.usepopupnotifications === true) {
-                        displayPopupNotification(response.message, 'error', true);
-                    }
-                    else {
-                        //no timeout for errors
-                        displayBarNotification(response.message, 'error', 0);
-                    }
+
+                if (AjaxCart.usepopupnotifications === true) {
+                    displayPopupNotification(response.message, 'error', true);
                 }
+                else {
+                    displayBarNotification(response.message, 'error', 0);
+                }
+
                 return false;
             }
         });
 
         addOrder.fail(function (data) {
-            
+            if (AjaxCart.usepopupnotifications === true) {
+                displayPopupNotification(data.statusText, 'error', true);
+            }
+            else {
+                //no timeout for errors
+                displayBarNotification(data.statusText, 'error', 0);
+            }
         });
 
         addOrder.always(function (data) {

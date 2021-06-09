@@ -3,6 +3,8 @@
     Html.AddScriptParts("~/Plugins/Misc.Membership/Assets/javascript/order-and-complete.js");
     var addToCartUrl = @Url.RouteUrl("AddProductToCart-Details", new { productId = Model.ProductId, shoppingCartTypeId = (int)ShoppingCartType.ShoppingCart });
     var completeOrderUrl = @Url.RouteUrl(MembershipPluginConstants.MEMBERSHIP_ORDER_AND_COMPLETE_ROUTE_NAME, new { productId = Model.ProductId });
+    var upgradeMembershipUrl = @Url.RouteUrl(MembershipPluginConstants.MEMBERSHIP_ROUTE_NAME);
+    var ordersUrl = @Url.RouteUrl("CustomerOrders");
 }
 
 @if (Model.ShowAddOrderButton)
@@ -19,15 +21,13 @@
 
 @if (Model.ShowAlterExistingOrdersButton && !Model.IsAllOrderFulfilled)
 {
-    <input type="button"
-           class="button-1 add-to-cart-button my-test-btn"
-           value="@T("Misc.Membership.OrderAndComplete.AlterExistingOrders")" />
+    <a href="@ordersUrl"
+       class="button-1 add-to-cart-button my-test-btn">@T("Misc.Membership.OrderAndComplete.AlterExistingOrders")</a>
 }
 
 
 @if (Model.ShowUpgradeMembershipButton)
 {
-    <input type="button"
-           class="button-1 add-to-cart-button my-test-btn"
-           value="@T("Misc.Membership.OrderAndComplete.UpgradeMembership")" />
+    <a href="@upgradeMembershipUrl"
+       class="button-1 add-to-cart-button my-test-btn">@T("Misc.Membership.OrderAndComplete.UpgradeMembership")</a>
 }

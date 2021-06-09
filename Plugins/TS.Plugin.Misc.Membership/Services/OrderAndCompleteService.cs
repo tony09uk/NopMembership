@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Nop.Core;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Orders;
@@ -21,6 +20,7 @@ namespace Ts.Plugin.Misc.Membership.Services
         private readonly IStoreContext _storeContext;
         private readonly ILocalizationService _localizationService;
         private readonly IWebHelper _webHelper;
+        private readonly IMembershipService _membershipService;
         private readonly IWorkContext _workContext;
         private readonly IOrderService _orderService;
         private readonly OrderSettings _orderSettings;
@@ -32,6 +32,7 @@ namespace Ts.Plugin.Misc.Membership.Services
             IStoreContext storeContext,
             ILocalizationService localizationService,
             IWebHelper webHelper,
+            IMembershipService membershipService,
             IWorkContext workContext,
             IOrderService orderService,
             OrderSettings orderSettings)
@@ -43,6 +44,7 @@ namespace Ts.Plugin.Misc.Membership.Services
             _storeContext = storeContext;
             _localizationService = localizationService;
             _webHelper = webHelper;
+            _membershipService = membershipService;
             _workContext = workContext;
             _orderService = orderService;
             _orderSettings = orderSettings;
@@ -65,10 +67,12 @@ namespace Ts.Plugin.Misc.Membership.Services
             //todo: work out what failure states exist in the above and return a boolean from here
             if (placeOrderResult.Success)
             {
+                IncrementOrderRequestCount();
                 return placeOrderResult.PlacedOrder.Id;
             } 
             else
             {
+                //todo: add logging here
                 return -1;
             }
         }
@@ -88,6 +92,21 @@ namespace Ts.Plugin.Misc.Membership.Services
 
             var interval = DateTime.UtcNow - lastOrder.CreatedOnUtc;
             return interval.TotalSeconds > _orderSettings.MinimumOrderPlacementInterval;
+        }
+
+        private void IncrementOrderRequestCount()
+        {
+            try
+            {
+                var membership = _membershipService.GetMembershipByCustomerId(_workContext.CurrentCustomer.Id);
+                membership.OrderRequestCount += 1;
+                _membershipService.Update(membership);
+            } 
+            catch(Exception ex)//todo: define expected exceptions
+            {
+                //todo: add logging here
+            }
+            
         }
     }
 }
