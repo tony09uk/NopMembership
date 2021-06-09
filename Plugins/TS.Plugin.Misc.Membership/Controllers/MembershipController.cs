@@ -75,6 +75,7 @@ namespace Nop.Plugin.Misc.MySmartCards.Controllers
         [HttpPost]
         public IActionResult OrderAndComplete(int productId)
         {
+            //todo: check the provided productId is not from a memberhip category
             var orderId = _orderAndCompleteService.Run(productId);
 
             //todo: how should I implement the order complete message/screen?

@@ -26,6 +26,7 @@ namespace Ts.Plugin.Misc.Membership.Infrastructure
         {
             builder.RegisterType<MembershipNavigationFactory>().As<IMembershipNavigationFactory>();
             builder.RegisterType<MembershipListFactory>().As<IMembershipListFactory>();
+            builder.RegisterType<OrderAndCompleteButtonViewFactory>().As<IOrderAndCompleteButtonViewFactory>();
         }
 
         private void RegisterServices(ContainerBuilder builder)

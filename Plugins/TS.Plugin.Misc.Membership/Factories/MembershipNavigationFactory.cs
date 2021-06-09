@@ -22,7 +22,7 @@ namespace Ts.Plugin.Misc.Membership.Factories
                 Title = "Membership",//_localizationService.GetResource("membership-navigation"),
                 Tab = MembershipNavigationEnum.Membership
                 //ItemClass = "update-handwriting"
-            }) ;
+            });
 
             model.SelectedTab = (MembershipNavigationEnum)selectedTabId;
 
